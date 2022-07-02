@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 import './Home.css'
 
 const Home = () => {
+    const {isAuth}=React.useContext(AuthContext);
   const [movies, setMovies] = React.useState([]);
 
   React.useEffect(() => {
@@ -13,6 +15,7 @@ const Home = () => {
   }, []);
 
   return (
+    isAuth ? (
     <>
       {
         <div className="movies-list"> 
@@ -20,13 +23,14 @@ const Home = () => {
                 <div key={movie.id} className="movie-items">
                     <img src={movie.poster_path} alt="" />
                     <h4>{movie.title}</h4>
-                    <Link to={`/movies/${movie.id}`}>More Details</Link>
+                    <Link to={`/movies/${movie.id}`}> <button>More Details</button> </Link>
                 </div>
             ))}
         </div>
       }
     </>
-  );
+    ) : null)
+
 };
 
 export default Home;

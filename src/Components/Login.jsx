@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const navigate = useNavigate();
+  const {handleAuth}=React.useContext(AuthContext)
+  const home = useNavigate();
 
   const handleLogin = () => {
     const payload = { email, password };
@@ -18,7 +20,8 @@ const Login = () => {
       .then((res) => res.json())
       .then((res) => {
         if (res.token) {
-          navigate("/");
+             handleAuth();
+            home("/home");
         }
       })
       .catch((err) => {

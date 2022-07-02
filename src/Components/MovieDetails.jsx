@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import './Details.css'
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -44,7 +45,7 @@ const MovieDetails = () => {
             <p>vote- average : {movieDetails.vote_average}</p>
             <p>vote- count : {movieDetails.vote_count}</p>
 
-            <Link to={`/booking`}>Book Ticket</Link>
+            <Link to={`/booking`}> <button>Book Ticket</button> </Link>
         </div>
         }
     </div>;
